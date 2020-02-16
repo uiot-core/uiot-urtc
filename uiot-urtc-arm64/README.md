@@ -20,6 +20,10 @@ cd ..
 bin/enginedemo rtsp://path/to/rtspstream
 ```
 
+## 创建URTC应用快速入门
+参考：[快速上手](https://docs.ucloud.cn/video/urtc/quick)
+
+
 ## **注意事项**
 1. 使用本库需要了解URTC的基本配置参数，包括应用名称，AppID, AppKey, roomid，userid, tokenid, 具体使用方法请参考[URTC文档](https://docs.ucloud.cn/video/urtc)
 2. 使用本库需要了解URTC的基本概念，包括进入房间、离开房间、发布视频流、取消发布、订阅视频流、取消订阅，

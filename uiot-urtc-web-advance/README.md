@@ -4,6 +4,9 @@
 
 本demo开源，基于React，可以直接运行，用户可以根据自身需求裁剪使用。
 
+## 创建URTC应用快速入门
+参考：[快速上手](https://docs.ucloud.cn/video/urtc/quick)
+
 
 ## uiot-urtc-web和uiot-urtc-web-advance 的区别
 
@@ -82,8 +85,8 @@ server {
 5. 通过上述支持的浏览器访问web
 
 进入后页面为：
-![uiot-urtc-web-advance](images/uiot-urtc-web-advance)
-![uiot-urtc-web-advance](images/uiot-urtc-web-advance2)
+![uiot-urtc-web-advance](./images/uiot-urtc-web-advance)
+![uiot-urtc-web-advance](./images/uiot-urtc-web-advance2)
 
 
 ## 注意事项
