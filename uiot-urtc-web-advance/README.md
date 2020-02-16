@@ -85,8 +85,8 @@ server {
 5. 通过上述支持的浏览器访问web
 
 进入后页面为：
-![uiot-urtc-web-advance](./images/uiot-urtc-web-advance)
-![uiot-urtc-web-advance](./images/uiot-urtc-web-advance2)
+![uiot-urtc-web-advance](./images/uiot-urtc-web-advance.png)
+![uiot-urtc-web-advance](./images/uiot-urtc-web-advance2.png)
 
 
 ## 注意事项
