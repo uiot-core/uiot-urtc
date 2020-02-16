@@ -2,3 +2,4 @@
 *.log.*
 uiot-urtc-arm64/build/*
 uiot-urtc-arm64/bin/*
+*.swp
