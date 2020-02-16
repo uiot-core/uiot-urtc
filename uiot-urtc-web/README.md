@@ -4,6 +4,9 @@
 
 本demo开源，支持angular、react、vue框架或者纯JS，可以直接运行，用户可以根据自身需求裁剪使用。
 
+本demo界面参考：
+![demo界面](image/uiot-urtc-web.png)
+
 ## uiot-urtc-web和uiot-urtc-web-advance 的区别
 
 - uiot-urtc-web 提供URTC基本功能的实现，包括加入房间、发布本地视频流、取消发布、订阅、取消订阅、离开房间；
@@ -29,7 +32,7 @@ vim urtc-sdk-web/examples/pureJS/js/index.js
   const UserId = "afnyhnizq9l4l9ev_appuser"+Math.floor(Math.random() * 1000000).toString();
 
 vim urtc-sdk-web/examples/pureJS/js/config.js
-// 修改AppId、AppKey
+// 修改AppId、AppKey, 文件为：urtc-sdk-web/examples/pureJS/js/config.js
 window.config = {
   AppId: 'urtc-4mb0tuor',
   AppKey: '05c8e4b931439ed161c71c8f80eba1a2'
@@ -78,13 +81,13 @@ server {
    - userid,由于web端主要以观看为主，所以可以根据业务确定用户体系；
    - tokenid为服务器端生成，测试环境直接使用AppKey测试，生产环境务必参考本项第2条；
 
-4. 生产、测试环境切换：
-   - 生产模式使用Tokenid，修改：
+5. 生产、测试环境切换：
+   - 生产模式使用token，修改：
    ```
    // 该demo本地生成，此处修改为server端获取
    const token = UCloudRTC.generateToken(AppId, AppKey, RoomId, UserId);
    this.client = new UCloudRTC.Client(AppId, token);
    ```
    - 测试环境可以暂使用（不安全）AppKey`;
-5. 其他请自行熟悉代码；
+6. 其他请自行熟悉代码；
 
