@@ -2,7 +2,7 @@
 
 适用浏览器： [https://docs.ucloud.cn/video/urtc/sdk/VideoStart](https://docs.ucloud.cn/video/urtc/sdk/VideoStart)
 
-本demo开源，支持angular、react、vue框架或者纯JS，可以直接运行，用户可以根据自身需求裁剪使用。
+本demo开源，基于React，可以直接运行，用户可以根据自身需求裁剪使用。
 
 
 ## uiot-urtc-web和uiot-urtc-web-advance 的区别
@@ -16,28 +16,44 @@
 
 1. 获取web-demo
 ```
-git clone https://github.com/ucloud/urtc-sdk-web.git
+git clone https://github.com/ucloud/urtc-js-demo.git
 ```
 
 2. 修改AppID, AppKey, roomid，userid等
 ```
-// 本例以纯js为例讲解，文件为：urtc-sdk-web/examples/pureJS/js/index.js
-vim urtc-sdk-web/examples/pureJS/js/index.js
+// 修改AppID, AppKey, roomid，userid，文件为：urtc-js-demo/src/pages/login/index.jsx
+vim urtc-js-demo/src/pages/login/index.jsx 
 
-// 修改 RoomId、UserId
-  // 此处使用固定的房间号的随机的用户ID，请自行替换
-  const RoomId = "afnyhnizq9l4l9ev";
-  const UserId = "afnyhnizq9l4l9ev_appuser"+Math.floor(Math.random() * 1000000).toString();
+// 修改 appId、userId、appkey、roomId
+  joinRoom = () => {
+    appData = {
+      appId: "urtc-4mb0tuor",
+      userId: "afnyhnizq9l4l9ev_webuser"+randNum(8),
+      // userId: '333',
 
-vim urtc-sdk-web/examples/pureJS/js/config.js
-// 修改AppId、AppKey, 文件为：urtc-sdk-web/examples/pureJS/js/config.js
-window.config = {
-  AppId: 'urtc-4mb0tuor',
-  AppKey: '05c8e4b931439ed161c71c8f80eba1a2'
-}
+      mediaType: "1", //桌面和摄像头采集类型
+      appkey: "05c8e4b931439ed161c71c8f80eba1a2"
+    };
+    const { role_type, roomId, name, room_type } = this.state;
+    this.setState({
+      loading: true
+    });
+    let param = {
+      room_type: room_type - 0,
+      role_type: role_type - 0,
+      roomId: "afnyhnizq9l4l9ev",
+      name,
+      ...appData
+    };
 ``` 
 
-3. 配置web服务器，比如nginx
+3. 编译生成静态文件
+```
+// 将在build目录下生成静态页面
+npm run build
+```
+
+4. 配置web服务器，比如nginx, 指向目录：`urtc-js-demo/build`
 ```
 server {
   #listen 80 default;
@@ -57,15 +73,17 @@ server {
   server_name _;
 
   access_log /data/wwwlogs/access_nginx.log combined;
-  root /path/to/urtc-sdk-web/examples/pureJS;
+  root /path/to/urtc-js-demo/build;
   index index.html index.htm index.php;
 }
 
 ```
 
-4. 通过上述支持的浏览器访问web
+5. 通过上述支持的浏览器访问web
 
-![uiot-urtc-web.png](image/uiot-urtc-web.png)
+进入后页面为：
+![uiot-urtc-web-advance](images/uiot-urtc-web-advance)
+![uiot-urtc-web-advance](images/uiot-urtc-web-advance2)
 
 
 ## 注意事项
@@ -73,7 +91,7 @@ server {
 1. WEB DEMO仅支持https，所以服务端需要配置TLS，使用授信证书或自签名证书；
 2. 使用本库需要了解URTC的基本配置参数，包括应用名称，AppID, AppKey, roomid，userid, tokenid, 具体使用方法请参考[URTC文档](https://docs.ucloud.cn/video/urtc)
 3. 使用本库需要了解URTC的基本概念，包括进入房间、离开房间、发布视频流、取消发布、订阅视频流、取消订阅，
-4. URTC在物联网场景下(参考`urtc-sdk-web/examples/pureJS/js/index.js`,`urtc-sdk-web/examples/pureJS/js/config.js`):
+4. URTC在物联网场景下(参考`urtc-js-demo/src/pages/login/index.jsx`):
    - AppID、AppKey为在UCloud控制台创建应用时系统自动生成;
    - 【重要】AppKey为接入平台认证Key，本demo中直接使用该Key接入，生产环境下务必将AppKey存在服务器端,[使用Token接入](https://docs.ucloud.cn/video/urtc/sdk/token)；
    - 应用名称采用 产品序列号+产品名称，比如：ozuz63kum2i4djb3_巡检无人机；
@@ -81,12 +99,17 @@ server {
    - userid,由于web端主要以观看为主，所以可以根据业务确定用户体系；
    - tokenid为服务器端生成，测试环境直接使用AppKey测试，生产环境务必参考本项第2条；
 
-5. 生产、测试环境切换：
+5. 生产、测试环境切换`urtc-js-demo/src/pages/class/index.jsx`：
    - 生产模式使用token，修改：
    ```
    // 该demo本地生成，此处修改为server端获取
-   const token = UCloudRTC.generateToken(AppId, AppKey, RoomId, UserId);
-   this.client = new UCloudRTC.Client(AppId, token);
+    const token = sdk.generateToken(
+      appData.appId,
+      appData.appkey,
+      appData.roomId,
+      appData.userId
+    );
+
    ```
    - 测试环境可以暂使用（不安全）AppKey`;
 6. 其他请自行熟悉代码；
