@@ -9,6 +9,7 @@ URTC 以动态链接库的方式提供SDK，包括两个文件：
 
 URTC DEMO为开源，用户可以直接使用到自己的产品中，本demo使用方法：
 
+### 如果在目标机器上编译使用下面的命令
 ```
 cd build
 # 生成Makefile等
@@ -18,6 +19,22 @@ make
 # 执行
 cd ..
 bin/enginedemo rtsp://path/to/rtspstream
+```
+
+### 如果使用交叉编译，需要修改CMakeList.txt （交叉编译速度会有所提高）
+```
+# 打开文件CMakeList.txt中下面的注释
+SET(CROSS_COMPILE 1)
+
+IF(CROSS_COMPILE)
+SET(TOOLCHAIN_DIR "/path/to/compile-toolchain/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu")
+set(CMAKE_CXX_COMPILER ${TOOLCHAIN_DIR}/bin/aarch64-linux-gnu-g++)
+set(CMAKE_C_COMPILER   ${TOOLCHAIN_DIR}/bin/aarch64-linux-gnu-gcc)
+
+SET(CMAKE_FIND_ROOT_PATH  ${TOOLCHAIN_DIR}
+ ${TOOLCHAIN_DIR}/include
+ ${TOOLCHAIN_DIR}/lib )
+ENDIF(CROSS_COMPILE)
 ```
 
 ## 创建URTC应用快速入门

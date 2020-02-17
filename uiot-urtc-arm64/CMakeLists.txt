@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.5)
 #SET(CROSS_COMPILE 1)
 
 #IF(CROSS_COMPILE)
-#SET(TOOLCHAIN_DIR "/root/bobqian/test/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu")
+#SET(TOOLCHAIN_DIR "/path/to/compile-toolchain/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu")
 #set(CMAKE_CXX_COMPILER ${TOOLCHAIN_DIR}/bin/aarch64-linux-gnu-g++)
 #set(CMAKE_C_COMPILER   ${TOOLCHAIN_DIR}/bin/aarch64-linux-gnu-gcc)
 
