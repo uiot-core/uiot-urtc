@@ -3,11 +3,20 @@
 适用环境：ubuntu 16.04 18.04
 编译工具: cmake make gcc g++
 
-URTC 以动态链接库的方式提供SDK，包括两个文件：
-- urtclib/libliburtcmediaengine.so
-- urtclib/liburtcnetengine.so
+URTC 以动态链接库的方式提供SDK，包括头文件和动态链接库文件：
+- urtclib/interface/UCloudRtcComDefine.h
+- urtclib/interface/UCloudRtcEngine.h
+- urtclib/interface/UCloudRtcErrorCode.h
+- urtclib/interface/UCloudRtcMediaDevice.h
+- urtclib/lib/libliburtcmediaengine.so
+- urtclib/lib/liburtcnetengine.so
 
 URTC DEMO为开源，用户可以直接使用到自己的产品中，本demo使用方法：
+
+### DEMO及SDK使用注意事项
+- 该SDK的视频源为RTSP格式，只支持baseline，RTSP 关键帧(GOP)设置推荐在3秒以内
+- 推流成功，用户可以处理回调函数`URTCEventHandler.cpp`中的`onLocalPublish`处理，如果`code==0`，则推流成功
+- 比特率设置需要小于3000
 
 ### 如果在目标机器上编译使用下面的命令
 ```
