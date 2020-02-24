@@ -238,6 +238,7 @@ typedef struct {
 	int mSimpleRate;
 	int mChannels;
 	int mNumSimples;
+	int mRealDataSize ;
 }tUCloudRtcAudioFrame;
 
 typedef struct {
@@ -259,6 +260,14 @@ typedef struct {
 	const char* mFileName ;
 	eUCloudRtcLogLevel mLogLevel ;
 }tUCloudRtcInitContext;
+
+typedef struct {
+	int mWidth;
+	int mHeight;
+	int mFrameRate;
+	int mMinBitrate ;
+	int mMaxBitrate ;
+}tUCloudVideoConfig;
 
 class  _EXPORT_API UCloudRtcAudioFrameCallback
 {
