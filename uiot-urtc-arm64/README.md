@@ -21,8 +21,7 @@ URTC DEMO为开源，用户可以直接使用到自己的产品中，本demo使�
 ### 如果在目标机器上编译使用下面的命令
 ```
 # 修改视频源获取接口，修改文件RTCVideoFrameSource.cpp中的
-bool VideoFrameSource::doCaptureVideoFrame(tUCloudRtcVideoFrame* videoframe)
-{}接口
+bool VideoFrameSource::doCaptureVideoFrame(tUCloudRtcVideoFrame* videoframe) {}接口
 # 进入编译目录
 cd build
 # 生成Makefile等
