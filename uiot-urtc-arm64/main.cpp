@@ -7,6 +7,7 @@
 #include "URTCMsgHandler.h"
 #include "msgqueue.h"
 #include <iostream>
+#include "RTCVideoFrameSource.h"
 
 URTCMsgHandler* g_msghandler = nullptr ;
 
@@ -36,13 +37,15 @@ int main(int argc, char **argv)
 	}
 	
 	RTCEngineBase* urtcengine = RTCEngineFactory::createRtcEngine(RTC_CHANNELTYPE_UCLOUD);
+	UCloudRtcExtendVideoCaptureSource * videocap = new VideoFrameSource();
 	if (urtcengine)
 	{
 		g_msghandler = new URTCMsgHandler(urtcengine) ;
 		MsgQueue::getInstance()->regEventHandler("", g_msghandler);
 		MsgQueue::getInstance()->startMsgQue() ;
         	urtcengine->InitRTCEngine("./data/log", 0);
-		urtcengine->EnableRtspSource(1, true, rtspurl) ;
+		urtcengine->enableExtendVideoSource(true, videocap);
+		//urtcengine->EnableRtspSource(1, true, rtspurl) ;
 		g_msghandler->setUserId(roomid) ;
         	g_msghandler->setRoomId(userid) ;
 
