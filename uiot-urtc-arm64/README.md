@@ -11,15 +11,19 @@ URTC 以动态链接库的方式提供SDK，包括头文件和动态链接库文
 - urtclib/lib/libliburtcmediaengine.so
 - urtclib/lib/liburtcnetengine.so
 
-URTC DEMO为开源，用户可以直接使用到自己的产品中，本demo使用方法：
+URTC DEMO为开源，用户可以直接使用到自己的产品中，本demo使用方法, 本demo的YUV源为读取y4m文件，模拟获取yuv视频源：
 
 ### DEMO及SDK使用注意事项
-- 该SDK的视频源为RTSP格式，只支持baseline，RTSP 关键帧(GOP)设置推荐在3秒以内
+- 该SDK-yuv分支的视频源为用户自定义视频源，有YUV和ARGB两种模式
 - 推流成功，用户可以处理回调函数`URTCEventHandler.cpp`中的`onLocalPublish`处理，如果`code==0`，则推流成功
 - 比特率设置需要小于3000
 
 ### 如果在目标机器上编译使用下面的命令
 ```
+# 修改视频源获取接口，修改文件RTCVideoFrameSource.cpp中的
+bool VideoFrameSource::doCaptureVideoFrame(tUCloudRtcVideoFrame* videoframe)
+{}接口
+# 进入编译目录
 cd build
 # 生成Makefile等
 cmake ../.

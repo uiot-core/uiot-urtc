@@ -25,7 +25,7 @@ int VideoFrameSource::openFile()
         m_fd = open(filepath, O_RDONLY);
         if(m_fd<0)
         {
-		std::cout <<"open file error#####################################"<< errno<< std::endl;
+		std::cout <<"open file error"<< errno<< std::endl;
             close(m_fd);
             return -1;
         }
@@ -40,7 +40,6 @@ int VideoFrameSource::openFile()
         lseek(m_fd, 44L, SEEK_SET);
 	m_filersize = 44;
     }
-    //std::cout <<"open file success#####################################"<< std::endl;
     return 0;
 
 }
@@ -60,7 +59,6 @@ bool VideoFrameSource::doCaptureVideoFrame(tUCloudRtcVideoFrame* videoframe)
     videoframe->mHeight = height ;
     videoframe->mDataSize = size ;
     videoframe->mVideoType = UCLOUD_RTC_VIDEO_FRAME_TYPE_I420 ;
-    //memset(videoframe->mDataBuf, 0, size);
     ret = openFile();
     if(ret == -1)
     {
@@ -90,8 +88,6 @@ bool VideoFrameSource::doCaptureVideoFrame(tUCloudRtcVideoFrame* videoframe)
 		    break;
 	    }
     } while(true);
-    //len=read(m_fd,videoframe->mDataBuf,size);
-    //memcpy(videoframe->mDataBuf,buf,len);
     return true;
 };
 
