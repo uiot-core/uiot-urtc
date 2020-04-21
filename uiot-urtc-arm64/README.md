@@ -11,10 +11,10 @@ URTC 以动态链接库的方式提供SDK，包括头文件和动态链接库文
 - urtclib/lib/libliburtcmediaengine.so
 - urtclib/lib/liburtcnetengine.so
 
-URTC DEMO为开源，用户可以直接使用到自己的产品中，本demo使用方法：
+URTC DEMO为开源，用户可以直接使用到自己的产品中。
 
 ### DEMO及SDK使用注意事项
-- 该SDK的视频源为RTSP格式，只支持baseline，RTSP 关键帧(GOP)设置推荐在3秒以内
+- 该SDK的视频源为RTSP格式(YUV和ARGB格式源可以查看yuv branch，git checkout yuv)，只支持baseline，RTSP 关键帧(GOP)设置推荐在3秒以内
 - 推流成功，用户可以处理回调函数`URTCEventHandler.cpp`中的`onLocalPublish`处理，如果`code==0`，则推流成功
 - 比特率设置需要小于3000
 
