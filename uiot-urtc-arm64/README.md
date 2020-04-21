@@ -53,7 +53,7 @@ ENDIF(CROSS_COMPILE)
 ## **注意事项**
 1. 使用本库需要了解URTC的基本配置参数，包括应用名称，AppID, AppKey, roomid，userid, tokenid, 具体使用方法请参考[URTC文档](https://docs.ucloud.cn/video/urtc)
 2. 使用本库需要了解URTC的基本概念，包括进入房间、离开房间、发布视频流、取消发布、订阅视频流、取消订阅，
-3. URTC在物联网场景下(参考`main.cpp`,`URTCConfig.cpp`):
+3. URTC若要配合UCloud物联网平台UIoT Core使用的场景下(参考`main.cpp`,`URTCConfig.cpp`):
    - AppID、AppKey为在UCloud控制台创建应用时系统自动生成;
    - 【重要】AppKey为接入平台认证Key，本demo中直接使用该Key接入，生产环境下务必将AppKey存在服务器端,[使用Token接入](https://docs.ucloud.cn/video/urtc/sdk/token)；
    - 应用名称采用 产品序列号+产品名称，比如：ozuz63kum2i4djb3_巡检无人机；
