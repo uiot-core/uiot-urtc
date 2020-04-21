@@ -14,7 +14,7 @@ URTC 以动态链接库的方式提供SDK，包括头文件和动态链接库文
 URTC DEMO为开源，用户可以直接使用到自己的产品中，本demo使用方法, 本demo的YUV源为读取y4m文件，模拟获取yuv视频源：
 
 ### DEMO及SDK使用注意事项
-- 该SDK-yuv分支的视频源为用户自定义视频源，有YUV和ARGB两种模式
+- 该SDK-yuv分支的视频源为用户自定义视频源，有YUV、ARGB和Hardware Encode三种模式
 - 推流成功，用户可以处理回调函数`URTCEventHandler.cpp`中的`onLocalPublish`处理，如果`code==0`，则推流成功
 - 比特率设置需要小于3000
 
@@ -30,7 +30,7 @@ cmake ../.
 make
 # 执行
 cd ..
-bin/enginedemo rtsp://path/to/rtspstream
+bin/enginedemo
 ```
 
 ### 如果使用交叉编译，需要修改CMakeList.txt （交叉编译速度会有所提高）
@@ -56,7 +56,7 @@ ENDIF(CROSS_COMPILE)
 ## **注意事项**
 1. 使用本库需要了解URTC的基本配置参数，包括应用名称，AppID, AppKey, roomid，userid, tokenid, 具体使用方法请参考[URTC文档](https://docs.ucloud.cn/video/urtc)
 2. 使用本库需要了解URTC的基本概念，包括进入房间、离开房间、发布视频流、取消发布、订阅视频流、取消订阅，
-3. URTC在物联网场景下(参考`main.cpp`,`URTCConfig.cpp`):
+3. URTC如果需要配合UCloud物联网平台UIoT Core场景下使用(参考`main.cpp`,`URTCConfig.cpp`):
    - AppID、AppKey为在UCloud控制台创建应用时系统自动生成;
    - 【重要】AppKey为接入平台认证Key，本demo中直接使用该Key接入，生产环境下务必将AppKey存在服务器端,[使用Token接入](https://docs.ucloud.cn/video/urtc/sdk/token)；
    - 应用名称采用 产品序列号+产品名称，比如：ozuz63kum2i4djb3_巡检无人机；
