@@ -98,7 +98,8 @@ typedef enum {
 }eUCloudRtcWaterMarkPos;
 
 typedef enum {
-	UCLOUD_RTC_WATERMARK_TYPE_TIME = 1,
+	UCLOUD_RTC_WATERMARK_TYPE_NONE ,
+	UCLOUD_RTC_WATERMARK_TYPE_TIME ,
 	UCLOUD_RTC_WATERMARK_TYPE_PIC,
 	UCLOUD_RTC_WATERMARK_TYPE_TEXT,
 }eUCloudRtcWaterMarkType;
@@ -179,6 +180,21 @@ typedef enum {
 }eUCloudRtcVideoFrameType;
 
 typedef struct {
+	const char* mUid;
+	eUCloudRtcMeidaType mMediaType;
+}tUCloudRtcRelayStream;
+
+typedef enum {
+	MIX_LAYOUT_NONE,
+	MIX_LAYOUT_FLOW,	  
+	MIX_LAYOUT_TEACH,	  
+	MIX_LAYOUT_CUSTOM,    
+	MIX_LAYOUT_SPEAKERMODE, 
+	MIX_LAYOUT_MULTIAUTO, 
+	MIX_LAYOUT_SINGEVIDEO_AUDIOMIXER, 
+}eUCloudMixLayout;
+
+typedef struct {
 	const char* mMainviewuid;
 	const char* mBucket;
 	const char* mBucketRegion;
@@ -186,6 +202,12 @@ typedef struct {
 	eUCloudRtcRecordType mRecordType;
 	eUCloudRtcWaterMarkPos mWatermarkPos;
 	eUCloudRtcMeidaType mMainviewmediatype;
+	eUCloudRtcWaterMarkType mWaterMarkType ;
+	const char* mWaterMarkUrl ;
+	bool mIsAverage ;
+	eUCloudMixLayout mMixerTemplateType ;
+	tUCloudRtcRelayStream* mRecordUserList = nullptr ;
+	int mRecordUserListSize ;
 }tUCloudRtcRecordConfig;
 
 // render view
